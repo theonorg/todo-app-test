@@ -22,7 +22,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - uses: ./.github/workflows/composite/build-test-publish #tasb/my-public-actions/build-test-publish@main
+    - uses: tasb/my-public-actions/build-test-publish@main
       with:
         mainProject: 'src/TodoAPI/TodoAPI.csproj'
         testsProject: 'src/TodoAPI.Tests/TodoAPI.Tests.csproj'
