@@ -21,31 +21,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
 
-    - name: Restore dependencies
-      run: |
-        dotnet restore src/TodoAPI/TodoAPI.csproj
-        dotnet restore src/TodoAPI.Tests/TodoAPI.Tests.csproj
-    
-    - name: Build
-      run: |
-        dotnet build --no-restore src/TodoAPI/TodoAPI.csproj
-        dotnet build --no-restore src/TodoAPI.Tests/TodoAPI.Tests.csproj
-    
-    - name: Test
-      run: dotnet test --no-build src/TodoAPI.Tests/TodoAPI.Tests.csproj --verbosity normal --logger "trx;LogFileName=test-results.trx"
-      
-    - name: Test Report
-      uses: dorny/test-reporter@v1
-      if: always()
+    - uses: ./.github/workflows/composite/build-test-publish #tasb/my-public-actions/build-test-publish@main
       with:
-        name: Todo API Tests
-        path: '**/TestResults/*.trx'
-        reporter: dotnet-trx
+        mainProject: 'src/TodoAPI/TodoAPI.csproj'
+        testsProject: 'src/TodoAPI.Tests/TodoAPI.Tests.csproj'
 
     - name: Publish
       run: |
