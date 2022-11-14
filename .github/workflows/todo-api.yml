@@ -28,10 +28,12 @@ jobs:
         testsProject: 'src/TodoAPI.Tests/TodoAPI.Tests.csproj'
 
     - name: Publish
+      if: github.event_name != 'pull_request'
       run: |
         dotnet publish --no-build src/TodoAPI/TodoAPI.csproj -o src/TodoAPI/publish
 
     - uses: actions/upload-artifact@v3
+      if: github.event_name != 'pull_request'
       with:
         name: todo-api
         path: src/TodoAPI/publish
