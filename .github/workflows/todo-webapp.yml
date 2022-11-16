@@ -64,6 +64,14 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    - name: 'Run az commands'
+      run: |
+        az account show
+        az group list
+        az appservice plan list
+        az webapp list
+        pwd 
+
     - name: 'Azure webapp deploy - UAT'
       id: uat-deploy
       uses: azure/webapps-deploy@v2
