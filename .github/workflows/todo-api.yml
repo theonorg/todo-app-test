@@ -35,5 +35,5 @@ jobs:
     - uses: actions/upload-artifact@v3
       if: github.event_name != 'pull_request'
       with:
-        name: ${{ env.ARTIFACT_NAME }}
+        name: todo-api
         path: src/TodoAPI/publish
