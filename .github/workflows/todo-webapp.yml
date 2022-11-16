@@ -11,6 +11,7 @@ on:
     paths:
       - 'src/TodoWebapp/**'
       - '.github/workflows/todo-webapp.yml'
+  workflow_dispatch:
 
 env:
   AZURE_WEBAPP_NAME: "tbernardo-todo-webap"
